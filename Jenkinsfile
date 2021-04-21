@@ -1,4 +1,4 @@
-pipeline{
+pipeline {
     agent any
     environment{
         MYSQL_ROOT_PASSWORD = credentials("MYSQL_ROOT_PASSWORD")
@@ -6,7 +6,7 @@ pipeline{
         DOCKER_PASSWORD = credentials("DOCKER_PASSWORD")
     }
     stages{
-                stage("Install Dependencies"){
+        stage("Install Dependencies"){
             steps {
                 script {
                     if (env.install_dependencies == 'true') {
@@ -14,6 +14,7 @@ pipeline{
                     }
                 }
             }
+        }
         stage("Build"){
             sh "docker-compose build --parallel"
         }
