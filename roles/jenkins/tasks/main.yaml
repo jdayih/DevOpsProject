@@ -22,8 +22,8 @@
     name: ubuntu
     groups: jenkins
     append: yes
-- name: Add ubuntu user and add it to sudo
-    user: name=ubuntu
+- name: Add jenkins user and add it to sudo
+    user: name=jenkins
           state=present
           createhome=yes
     become: yes
