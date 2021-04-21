@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment{
-        MYSQL_ROOT_PASSWORD = credentials("MYSQL_ROOT_PASSWORD")
+        DATABASE_URI = credentials("DATABASE_URI")
         DOCKER_USERNAME = "jasminedhaliwal95"
         DOCKER_PASSWORD = credentials("DOCKER_PASSWORD")
     }
