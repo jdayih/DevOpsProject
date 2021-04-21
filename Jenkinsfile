@@ -4,11 +4,16 @@ pipeline {
         DATABASE_URI = credentials("DATABASE_URI")
         DOCKER_USERNAME = "jasminedhaliwal95"
         DOCKER_PASSWORD = credentials("DOCKER_PASSWORD")
+        install-dependencies = false
     }
     stages{
         stage("Install Dependencies"){
             steps {
-                sh "bash install-dependencies.sh"
+                script {
+                    if (env.install-dependencies == 'true') {
+                            sh "bash install-dependencies.sh"
+                    }
+                }
             }
         }
         stage("Build"){
