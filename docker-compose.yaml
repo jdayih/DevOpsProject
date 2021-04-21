@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  db:
+    container_name: mysql
+    build: ./database
+    image: flask-app-db
+    environment: 
+      MYSQL_ROOT_PASSWORD: $(MYSQL_ROOT_PASSWORD)
+      MYSQL_DATABASE: flask-db
+  flask-app:
+    container_name: flask-app
+    build: ./frontend
+    image: devops-project-flask-app
+  nginx: 
+    image: nginx:latest
+    ports:
+    - target: 80
+      published: 80
+    volumes:
+    - type: bind
+      source: ./nginx/nginx.conf
+      target: /etc/nginx/nginx.conf
