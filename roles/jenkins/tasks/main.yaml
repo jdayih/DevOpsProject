@@ -23,9 +23,9 @@
     groups: jenkins
     append: yes
 - name: Get initial admin password
-  slurp:
-    src: /var/lib/jenkins/secrets/initialAdminPassword
-  register: administratorpassword
+  shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+  changed_when: false
+  register: result
 - name: Print admin password to the console
   debug:
-    msg: "{{ administratorpassword }}"
+    msg: "{{ result }}"
