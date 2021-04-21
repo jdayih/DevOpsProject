@@ -1,6 +1,7 @@
 #!/bin/bash
 
-sudo apt-get update
+sudo apt update
+sudo apt install curl -y
 
 # Install Docker
 curl https://get.docker.com | sudo bash
