@@ -8,11 +8,7 @@ pipeline {
     stages{
         stage("Install Dependencies"){
             steps {
-                script {
-                    if (env.install_dependencies == 'true') {
-                            sh "bash install-dependencies.sh"
-                    }
-                }
+                sh "bash installDependencies.sh"
             }
         }
         stage("Build"){
