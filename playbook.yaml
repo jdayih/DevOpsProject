@@ -1,0 +1,14 @@
+- hosts: jenkins
+  become: true
+  roles:
+  - jenkins
+
+- hosts: prod
+  become: true
+  roles:
+  - docker
+
+- hosts: test
+  become: true
+  roles:
+  - docker

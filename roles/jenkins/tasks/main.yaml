@@ -1,0 +1,31 @@
+---
+- name: Install Java
+  apt:
+    name: openjdk-11-jdk
+    state: present
+    update_cache: true
+- name: Add GPG key
+  apt_key:
+    url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+    state: present
+- name: Add repository
+  apt_repository:
+    repo: deb [arch=amd64] https://pkg.jenkins.io/debian-stable binary/
+    state: present
+- name: Install Jenkins
+  apt:
+    name: jenkins
+    state: present
+    update_cache: true
+- name: Add ubuntu to Jenkins group
+  user:
+    name: ubuntu
+    groups: jenkins
+    append: yes
+- name: Get initial admin password
+  slurp:
+    src: /var/lib/jenkins/secrets/initialAdminPassword
+  register: administratorpassword
+- name: Print admin password to the console
+  debug:
+    msg: "{{ administratorpassword }}"
