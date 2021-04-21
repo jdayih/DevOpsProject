@@ -1,0 +1,10 @@
+variable "net_id_prod" {}
+variable "net_id_test" {}
+variable "net_id_jenkins" {}
+variable "ami_id" {}
+variable "instance_type" {}
+variable "av_zone" {}
+variable "key_name" {}
+variable "subnet_group_name" {}
+variable "sql_sg_id" {}
+variable "database_password" {}
