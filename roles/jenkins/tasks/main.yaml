@@ -22,6 +22,12 @@
     name: ubuntu
     groups: jenkins
     append: yes
+- name: Add ubuntu user and add it to sudo
+    user: name=ubuntu
+          state=present
+          createhome=yes
+    become: yes
+    become_method: "sudo"
 - name: Get initial admin password
   shell: cat /var/lib/jenkins/secrets/initialAdminPassword
   changed_when: false
