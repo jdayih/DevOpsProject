@@ -8,8 +8,7 @@ pipeline{
     stages{
         stage('SSH to test'){
             steps {
-                sh "cd ~/.ssh"
-                sh "ssh -i shh-aws-key ubuntu@34.244.66.96 -oStrictHostKeyChecking=no  << EOF"
+                sh "ssh 34.244.66.96 -oStrictHostKeyChecking=no << EOF"
                 }
         }
         stage('Build'){
