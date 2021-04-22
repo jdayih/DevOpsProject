@@ -1,23 +1,23 @@
 pipeline {
     agent any
-    environment{
+    environment {
         DATABASE_URI = credentials("DATABASE_URI")
-        DOCKER_USERNAME = "jasminedhaliwal95"
+        SECRET_KEY = credentials("SECRET_KEY")
         DOCKER_PASSWORD = credentials("DOCKER_PASSWORD")
     }
-    stages{
+    stages {
         stage("Build"){
-            steps{
+            steps {
                 sh "docker-compose build --parallel"
             }
         }
         stage("Push"){
-            steps{
+            steps {
                 sh "docker-compose push"
             }
         }
         stage("Deploy"){
-            steps{
+            steps {
                 sh "docker-compose up -d"
             }
         }
