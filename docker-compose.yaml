@@ -1,45 +1,45 @@
 version: "3.8"
 services:
   database:
-    container_name: database
+    image: databaseImage
     build: ./database
-    image: 1m0gen/project-database
     environment:
       DATABASE_URI: ${DATABASE_URI}
       SECRET_KEY: ${SECRET_KEY}
     volumes:
     - type: volume
       source: project-db
-      target: /var/lib/mysql
+      target: /var/lib/mysql 
 
-  frontend:
-    container_name: frontend
-    build: ./frontend
-    image: 1m0gen/project-frontend
-    ports:
-      - target: 5000
-        published: 5000
-    environment:
-      - DATABASE_URI=${DATABASE_URI}
-        SECRET_KEY=${SECRET_KEY}
-
-  backend:
-    container_name: backend
-    build: ./backend
-    image: 1m0gen/project-backend
-    ports:
-      - target: 5001
-        published: 5001
+frontend:
+  image: frontendImage
+  build: ./frontend
+  ports:
+    - target: 5000
+      published: 5000
+  environment:
+    - DATABASE_URI=${DATABASE_URI}
+      SECRET_KEY=${SECRET_KEY}
+    
+backend:
+  image: backendImage
+  build: ./backend
+  ports:
+  - target: 5001
+    published: 5001 
 
   nginx:
     image: nginx:latest
     ports:
-    - target: 80
-      published: 80
+     - target: 80
+       published: 80
+       protocol: tcp
     volumes:
-    - type: bind
-      source: ./nginx/nginx.conf
-      target: /etc/nginx/nginx.conf
-            
+     - type: bind
+       source: ./nginx/nginx.conf
+       target: /etc/nginx/nginx.conf
+    depends_on:
+       - frontend
+
 volumes:
   project-db:
