@@ -1,22 +1,27 @@
-pipeline {
+pipeline{
     agent any
     environment {
         DATABASE_URI = credentials("DATABASE_URI")
         SECRET_KEY = credentials("SECRET_KEY")
         DOCKER_PASSWORD = credentials("DOCKER_PASSWORD")
     }
-    stages {
-        stage("Build"){
+    stages{
+        stage('SSH to test'){
+            steps {
+                sh "ssh 34.244.66.96 -oStrictHostKeyChecking=no  << EOF"
+                }
+        }
+        stage('Build'){
             steps {
                 sh "docker-compose build --parallel"
             }
         }
-        stage("Push"){
+        stage('Test'){
             steps {
-                sh "docker-compose push"
+                sh "pytest --cov application"
             }
-        }
-        stage("Deploy"){
+        } 
+        stage('Deploy'){
             steps {
                 sh "docker-compose up -d"
             }
