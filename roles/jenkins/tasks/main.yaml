@@ -17,11 +17,30 @@
     name: jenkins
     state: present
     update_cache: true
+- name: Start & Enable Jenkins
+  systemd:
+    name: jenkins
+    state: started
+    enabled: true
 - name: Add ubuntu to Jenkins group
   user:
     name: ubuntu
     groups: jenkins
     append: yes
+- name: ssh folder
+  file:
+    path: /home/jenkins/.ssh
+    state: directory
+    mode: "0700"
+    owner: jenkins
+    group: jenkins
+- name: install private key
+  copy:
+    src: ~/.ssh/ansible_id_rsa
+    dest: /home/jenkins/.ssh/id_rsa
+    owner: jenkins
+    group: jenkins
+    mode: u=rw,g=,o=
 - name: Get initial admin password
   shell: cat /var/lib/jenkins/secrets/initialAdminPassword
   changed_when: false
