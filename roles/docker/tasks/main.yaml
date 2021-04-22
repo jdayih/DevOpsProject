@@ -1,4 +1,8 @@
 ---
+- name: Create jenkins user
+    user:
+      name: jenkins
+      shell: /bin/bash
 - name: Install Docker dependencies
   apt:
     pkg:
@@ -23,6 +27,10 @@
     - docker-ce-cli
     - containerd.io
     update_cache: true
+- name: docker service
+  service:
+    name: docker
+    state: started
 - name: Add ubuntu to Docker group
   user:
     name: ubuntu
