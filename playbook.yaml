@@ -2,6 +2,7 @@
   become: true
   roles:
   - jenkins
+  - docker
 
 - hosts: prod
   become: true
