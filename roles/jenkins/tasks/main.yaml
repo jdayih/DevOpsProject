@@ -1,4 +1,7 @@
 ---
+- name: Generate key pair
+  openssh_keypair:
+    path: ~/.ssh/ansible_id_rsa
 - name: Install Java
   apt:
     name: openjdk-11-jdk
@@ -37,14 +40,14 @@
 - name: install private key
   copy:
     src: ~/.ssh/ansible_id_rsa
-    dest: /home/jenkins/.ssh/id_rsa
+    dest: /home/jenkins/.ssh/ansible_id_rsa
     owner: jenkins
     group: jenkins
     mode: u=rw,g=,o=
-- name: Get initial admin password
-  shell: cat /var/lib/jenkins/secrets/initialAdminPassword
-  changed_when: false
-  register: result
-- name: Print admin password to the console
-  debug:
-    msg: "{{ result }}"
+#- name: Get initial admin password
+#  shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+#  changed_when: false
+#  register: result
+#- name: Print admin password to the console
+#  debug:
+#    msg: "{{ result }}"
