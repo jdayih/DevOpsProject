@@ -10,15 +10,24 @@ services:
     volumes:
     - type: volume
       source: project-db
-      target: /var/lib/mysql  
+      target: /var/lib/mysql
+
   frontend:
     container_name: frontend
     build: ./frontend
-    image: 1m0gen/project-frontend  
+    image: 1m0gen/project-frontend
+    ports:
+      - target: 5000
+        published: 5000
+
   backend:
     container_name: backend
     build: ./backend
-    image: 1m0gen/project-backend  
+    image: 1m0gen/project-backend
+    ports:
+      - target: 5001
+        published: 5001
+
   nginx:
     image: nginx:latest
     ports:
@@ -27,6 +36,7 @@ services:
     volumes:
     - type: bind
       source: ./nginx/nginx.conf
-      target: /etc/nginx/nginx.conf      
+      target: /etc/nginx/nginx.conf
+            
 volumes:
   project-db:
