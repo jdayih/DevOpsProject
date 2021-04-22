@@ -1,3 +1,10 @@
+- hosts: localhost
+  connection: local
+  tasks:
+  - name: Generate key pair
+    openssh_keypair:
+      path: ~/.ssh/ansible_id_rsa
+
 - hosts: jenkins
   become: true
   roles:
