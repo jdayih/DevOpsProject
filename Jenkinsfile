@@ -8,7 +8,6 @@ pipeline{
     stages{
         stage('SSH'){
             steps {
-                job_name=${JOB_NAME}
                 sh "ssh -T -i '/home/jenkins/.ssh/id_rsa' ubuntu@54.154.218.99 -oStrictHostKeyChecking=no  << EOF"
             }
         }
