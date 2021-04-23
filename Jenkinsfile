@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage('SSH to test'){
             steps {
-                sh '''ssh 54.246.139.137 -oStrictHostKeyChecking=no << EOF
+                sh '''ssh 3.250.184.0 -oStrictHostKeyChecking=no << EOF
                       echo 'hello'
                       EOF'''
                 }

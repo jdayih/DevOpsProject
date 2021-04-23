@@ -28,7 +28,7 @@ module "ec2" {
   ami_id            = "ami-08bac620dc84221eb"
   instance_type     = "t2.medium"
   av_zone           = "eu-west-1a"
-  key_name          = "ssh-aws-key"
+  key_name          = "jasmine-dhaliwal-aws"
   subnet_group_name = module.subnet.subnet_group_name
   sql_sg_id         = module.vpc.sql_sg_id
   database_password = var.database_password
@@ -48,7 +48,7 @@ resource "local_file" "ansible_inventory" {
           hosts:
             ${module.ec2.test_public_ip}
       vars:
-        ansible_ssh_private_key_file: "~/.ssh/ssh-aws-key"
+        ansible_ssh_private_key_file: "~/.ssh/jasmine-dhaliwal-aws.pem"
         ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
         ansible_user: ubuntu
 

@@ -25,8 +25,8 @@ resource "aws_subnet" "subnet_3" {
   }
 }
 
-resource "aws_db_subnet_group" "private_group" {
-  name       = "private_group"
+resource "aws_db_subnet_group" "private_group3" {
+  name       = "private_group3"
   subnet_ids = [aws_subnet.subnet_2.id, aws_subnet.subnet_3.id]
 
   tags = {
