@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage('SSH to test'){
             steps {
-                sh "ssh -t -i /home/jenkins/.ssh/id_rsa ubuntu@54.154.218.99 -oStrictHostKeyChecking=no  << EOF"
+                sh "ssh -tt -i ubuntu@54.154.218.99 -oStrictHostKeyChecking=no  << EOF"
             }
         }
         stage('Build'){
