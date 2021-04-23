@@ -60,5 +60,5 @@
     owner: jenkins
     group: jenkins
     mode: u=rw,g=,o=
-#- name: Restart terminal
-#  reboot:
+- name: Restart terminal
+  reboot:
