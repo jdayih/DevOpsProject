@@ -37,7 +37,7 @@
 - name: install private key
   copy:
     src: ~/.ssh/ansible_id_rsa
-    dest: /home/jenkins/.ssh/ansible_id_rsa
+    dest: /var/lib/jenkins/.ssh/id_rsa
     owner: jenkins
     group: jenkins
     mode: u=rw,g=,o=
