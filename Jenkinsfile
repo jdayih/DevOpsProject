@@ -13,7 +13,7 @@ pipeline{
         }
         stage('Clone repo'){
             steps {
-                sh "git clone https://github.com/QACTrainers/jdayih_assessment"
+                sh "git clone https://github.com/QACTrainers/jdayih_assessment.git"
             }
         }
         stage('Build'){
