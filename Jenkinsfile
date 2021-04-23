@@ -6,23 +6,11 @@ pipeline{
         DOCKER_PASSWORD = credentials("DOCKER_PASSWORD")
     }
     stages{
-        stage('SSH to test'){
-            steps {
-                sh '''ssh 3.250.184.0 -oStrictHostKeyChecking=no << EOF
-                      echo 'hello'
-                      EOF'''
-                }
-        }
         stage('Build'){
             steps {
                 sh "docker-compose build --parallel"
             }
         }
-        stage('Test'){
-            steps {
-                sh "pytest --cov application"
-            }
-        } 
         stage('Deploy'){
             steps {
                 sh "docker-compose up -d"
