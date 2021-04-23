@@ -52,7 +52,7 @@
     state: directory
     mode: "0700"
     owner: jenkins
-    group: jenkins 
+    group: jenkins
 - name: install public key
   copy:
     src: ~/.ssh/ansible_id_rsa.pub

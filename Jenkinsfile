@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage('SSH to test'){
             steps {
-                sh '''ssh -i home/jenkins/.ssh/ansible_id_rsa 54.246.139.137 -oStrictHostKeyChecking=no << EOF
+                sh '''ssh 54.246.139.137 -oStrictHostKeyChecking=no << EOF
                       echo 'hello'
                       EOF'''
                 }
