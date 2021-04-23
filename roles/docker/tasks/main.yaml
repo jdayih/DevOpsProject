@@ -46,16 +46,13 @@
     url: https://github.com/docker/compose/releases/download/1.28.6/docker-compose-Linux-{{ ansible_machine }}
     dest: /usr/local/bin/docker-compose
     mode: '777'
-- name: Install docker public ssh key
-  become: true
-  tasks:
-  - name: ssh folder
-    file:
-      path: ~/.ssh
-      state: directory
-      mode: "0700"
-      owner: jenkins
-      group: jenkins
+- name: ssh folder
+  file:
+    path: ~/.ssh
+    state: directory
+    mode: "0700"
+    owner: jenkins
+    group: jenkins
 - name: install public key
   copy:
     src: ~/.ssh/ansible_id_rsa.pub
