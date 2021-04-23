@@ -14,5 +14,5 @@ output "nat_gateway_id" {
   value = aws_nat_gateway.nat_gateway.id
 }
 output "subnet_group_name" {
-  value = aws_db_subnet_group.private_group.name
+  value = aws_db_subnet_group.private_group3.name
 }
