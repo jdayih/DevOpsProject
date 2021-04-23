@@ -8,9 +8,9 @@ pipeline{
     stages{
         stage('Clone repo and build'){
             steps {
-                sh """ssh -T -i '/home/jenkins/.ssh/id_rsa' ubuntu@54.154.218.99 -oStrictHostKeyChecking=no  << EOF
+                sh '''ssh -T -i '/home/jenkins/.ssh/id_rsa' ubuntu@54.154.218.99 -oStrictHostKeyChecking=no  << EOF
                       git clone --branch dev git@github.com:QACTrainers/jdayih_assessment.git
-EOF"""
+EOF'''
             }
         }
         stage('Build'){
