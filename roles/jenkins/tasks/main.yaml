@@ -41,10 +41,10 @@
     owner: jenkins
     group: jenkins
     mode: u=rw,g=,o=
-- name: Get initial admin password
-  shell: cat /var/lib/jenkins/secrets/initialAdminPassword
-  changed_when: false
-  register: result
-- name: Print admin password to the console
-  debug:
-    msg: "{{ result }}"
+#- name: Get initial admin password
+#  shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+#  changed_when: false
+#  register: result
+#- name: Print admin password to the console
+#  debug:
+#    msg: "{{ result }}"
