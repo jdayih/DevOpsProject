@@ -23,6 +23,7 @@ EOF'''
         stage('Deploy'){
             steps {
                 sh '''ssh -T -i '/home/jenkins/.ssh/id_rsa' ubuntu@54.154.218.99 -oStrictHostKeyChecking=no  << EOF
+                      cd jdayih_assessment
                       docker-compose up -d
 EOF'''
             }
