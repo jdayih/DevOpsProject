@@ -15,12 +15,16 @@ EOF'''
         }
         stage('Build'){
             steps {
-                sh "docker-compose build --parallel"
+                sh '''ssh -T -i '/home/jenkins/.ssh/id_rsa' ubuntu@54.154.218.99 -oStrictHostKeyChecking=no  << EOF
+                      docker-compose build --parallel
+EOF'''
             }
         }
         stage('Deploy'){
             steps {
-                sh "docker-compose up -d"
+                sh '''ssh -T -i '/home/jenkins/.ssh/id_rsa' ubuntu@54.154.218.99 -oStrictHostKeyChecking=no  << EOF
+                      docker-compose up -d
+EOF'''
             }
         }
     }
