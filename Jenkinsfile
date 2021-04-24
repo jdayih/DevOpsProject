@@ -6,7 +6,7 @@ pipeline{
         DOCKER_PASSWORD = credentials("DOCKER_PASSWORD")
     }
     stages{
-        stage('Clone repo and build'){
+        stage('Clone repo'){
             steps {
                 sh '''ssh -T -i '/home/jenkins/.ssh/id_rsa' ubuntu@54.154.218.99 -oStrictHostKeyChecking=no  << EOF
                       git clone --branch dev git@github.com:QACTrainers/jdayih_assessment.git
