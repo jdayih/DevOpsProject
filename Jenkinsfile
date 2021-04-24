@@ -26,6 +26,8 @@ EOF'''
             steps {
                 sh '''ssh -T -i '/home/jenkins/.ssh/id_rsa' ubuntu@54.154.218.99 -oStrictHostKeyChecking=no  << EOF
                       cd jdayih_assessment
+                      export DATABASE_URI=$DATABASE_URI
+                      export SECRET_KEY=$SECRET_KEY
                       docker-compose up -d
 EOF'''
             }
