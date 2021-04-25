@@ -23,6 +23,9 @@ services:
       - target: 5000
         published: 80
         protocol: tcp
+    environment:
+      - DATABASE_URI=${DATABASE_URI}
+      - SECRET_KEY=${SECRET_KEY}
 
   backend:
     container_name: backend
