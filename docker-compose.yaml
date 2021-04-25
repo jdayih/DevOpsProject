@@ -10,18 +10,18 @@ services:
       - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=${SECRET_KEY}
       - MYSQL_DATABASE=sqldatabase
-    volumes:
-    - type: volume
-      source: project-db
-      target: /var/lib/mysql
+#    volumes:
+#    - type: volume
+#      source: project-db
+#      target: /var/lib/mysql
 
   frontend:
     container_name: frontend
     build: ./frontend
     image: 1m0gen/project-frontend
     ports:
-      - target: 5000
-        published: 5000
+      - target: 80
+        published: 80
 
   backend:
     container_name: backend
@@ -34,18 +34,18 @@ services:
       - DATABASE_URI=${DATABASE_URI}
       - SECRET_KEY=${SECRET_KEY}
 
-  nginx:
-    image: nginx:latest
-    ports:
-    - target: 80
-      published: 80
-      protocol: tcp
-    volumes:
-    - type: bind
-      source: ./nginx/nginx.conf
-      target: /etc/nginx/nginx.conf
-    depends_on:
-    - frontend
+#  nginx:
+ #   image: nginx:latest
+  #  ports:
+   # - target: 80
+    #  published: 80
+     # protocol: tcp
+    #volumes:
+    #- type: bind
+    #  source: ./nginx/nginx.conf
+    #  target: /etc/nginx/nginx.conf
+    #depends_on:
+    #- frontend
             
-volumes:
-  project-db:
+#volumes:
+#  project-db:
