@@ -6,6 +6,15 @@ pipeline{
         DOCKER_PASSWORD = credentials("DOCKER_PASSWORD")
     }
     stages{
+        stage('Clean up workspace'){
+            steps {
+                sh '''ssh -T -i '/home/jenkins/.ssh/id_rsa' ubuntu@54.154.218.99 -oStrictHostKeyChecking=no  << EOF
+                      rm -r jdayih_assessment
+                      docker stop $(docker ps -a -q)
+                      docker rm $(docker ps -a -q)
+EOF'''
+            }
+        }
         stage('Clone repo'){
             steps {
                 sh '''ssh -T -i '/home/jenkins/.ssh/id_rsa' ubuntu@54.154.218.99 -oStrictHostKeyChecking=no  << EOF
