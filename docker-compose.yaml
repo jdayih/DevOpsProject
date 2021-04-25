@@ -7,6 +7,9 @@ services:
     environment:
       - DATABASE_URI=${DATABASE_URI}
       - SECRET_KEY=${SECRET_KEY}
+      - MYSQL_USER=admin
+      - MYSQL_ROOT_PASSWORD=${SECRET_KEY}
+      - MYSQL_DATABASE=sqldatabase
     volumes:
     - type: volume
       source: project-db
