@@ -1,0 +1,64 @@
+---
+- name: Create jenkins user
+  user:
+    name: jenkins
+    shell: /bin/bash
+- name: Install Docker dependencies
+  apt:
+    pkg:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg
+    - lsb-release
+    update_cache: true
+- name: Add GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+- name: Add repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename|lower }} stable
+    state: present
+- name: Install latest Docker version
+  apt:
+    pkg:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    update_cache: true
+- name: docker service
+  service:
+    name: docker
+    state: started
+- name: Add ubuntu to Docker group
+  user:
+    name: ubuntu
+    groups: docker
+    append: yes
+- name: Add jenkins to Docker group
+  user:
+    name: jenkins
+    groups: docker
+    append: yes
+- name: Install latest Docker-Compose
+  get_url:
+    url: https://github.com/docker/compose/releases/download/1.28.6/docker-compose-Linux-{{ ansible_machine }}
+    dest: /usr/local/bin/docker-compose
+    mode: '777'
+- name: ssh folder
+  file:
+    path: ~/.ssh
+    state: directory
+    mode: "0700"
+    owner: jenkins
+    group: jenkins
+- name: install public key
+  copy:
+    src: ~/.ssh/ansible_id_rsa.pub
+    dest: ~/.ssh/authorized_keys
+    owner: jenkins
+    group: jenkins
+    mode: u=rw,g=,o=
+- name: Restart terminal
+  reboot:
