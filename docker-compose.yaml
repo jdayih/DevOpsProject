@@ -21,7 +21,7 @@ services:
     image: 1m0gen/project-frontend
     ports:
       - target: 5000
-        published: 80
+        published: 5000
         protocol: tcp
     environment:
       - DATABASE_URI=${DATABASE_URI}
