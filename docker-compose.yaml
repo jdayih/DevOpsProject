@@ -20,8 +20,9 @@ services:
     build: ./frontend
     image: 1m0gen/project-frontend
     ports:
-      - target: 80
+      - target: 5000
         published: 80
+        protocol: tcp
 
   backend:
     container_name: backend
