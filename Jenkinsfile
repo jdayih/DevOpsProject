@@ -10,7 +10,7 @@ pipeline{
             steps {
                 sh '''ssh -T -i '/home/jenkins/.ssh/id_rsa' ubuntu@54.154.218.99 -oStrictHostKeyChecking=no  << EOF
                       rm -r jdayih_assessment
-                      docker system prune -a
+                      docker system prune -a -f
 EOF'''
             }
         }
