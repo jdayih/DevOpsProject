@@ -5,11 +5,11 @@ services:
     build: ./database
     image: 1m0gen/project-database
     environment:
-      - DATABASE_URI=${DATABASE_URI}
-      - SECRET_KEY=${SECRET_KEY}
-      - MYSQL_USER=root
-      - MYSQL_ROOT_PASSWORD=${SECRET_KEY}
-      - MYSQL_DATABASE=sqldatabase
+      DATABASE_URI: mysql+pymysql://root:password@mysql:3306/sqldatabase
+      SECRET_KEY: ${SECRET_KEY}
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: sqldatabase
     volumes:
     - type: volume
       source: project-db
@@ -24,16 +24,18 @@ services:
         published: 5000
         protocol: tcp
     environment:
-      - DATABASE_URI=${DATABASE_URI}
-      - SECRET_KEY=${SECRET_KEY}
+      DATABASE_URI: mysql+pymysql://root:password@mysql:3306/sqldatabase
+      SECRET_KEY: ${SECRET_KEY}
+    depends_on:
+      - frontend
 
   backend:
     container_name: backend
     build: ./backend
     image: 1m0gen/project-backend
     environment:
-      - DATABASE_URI=${DATABASE_URI}
-      - SECRET_KEY=${SECRET_KEY}
+      DATABASE_URI: mysql+pymysql://root:password@mysql:3306/sqldatabase
+      SECRET_KEY: ${SECRET_KEY}
 
   nginx:
     image: nginx:latest
