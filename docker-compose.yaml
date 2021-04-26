@@ -10,10 +10,10 @@ services:
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: sqldatabase
-    volumes:
-    - type: volume
-      source: project-db
-      target: /var/lib/mysql
+#    volumes:
+#    - type: volume
+ #     source: project-db
+#      target: /var/lib/mysql
 
   frontend:
     container_name: frontend
@@ -40,18 +40,18 @@ services:
     depends_on:
       - database
 
-  nginx:
-    image: nginx:latest
-    ports:
-    - target: 80
-      published: 80
-      protocol: tcp
-    volumes:
-    - type: bind
-      source: ./nginx/nginx.conf
-      target: /etc/nginx/nginx.conf
-    depends_on:
-    - frontend
-            
-volumes:
-  project-db:
+#  nginx:
+#    image: nginx:latest
+#    ports:
+#    - target: 80
+#      published: 80
+#      protocol: tcp
+#    volumes:
+#    - type: bind
+#      source: ./nginx/nginx.conf
+#      target: /etc/nginx/nginx.conf
+#    depends_on:
+#    - frontend
+#            
+#volumes:
+#  project-db:
