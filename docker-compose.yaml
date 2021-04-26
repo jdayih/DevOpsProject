@@ -27,7 +27,8 @@ services:
       DATABASE_URI: mysql+pymysql://root:password@mysql:3306/sqldatabase
       SECRET_KEY: ${SECRET_KEY}
     depends_on:
-      - frontend
+      - backend
+      - database
 
   backend:
     container_name: backend
@@ -36,6 +37,8 @@ services:
     environment:
       DATABASE_URI: mysql+pymysql://root:password@mysql:3306/sqldatabase
       SECRET_KEY: ${SECRET_KEY}
+    depends_on:
+      - database
 
   nginx:
     image: nginx:latest
