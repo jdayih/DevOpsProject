@@ -20,8 +20,8 @@ services:
     build: ./frontend
     image: 1m0gen/project-frontend
     ports:
-      - target: 5005
-        published: 5005
+      - target: 5000
+        published: 5000
         protocol: tcp
     environment:
       - DATABASE_URI=${DATABASE_URI}
@@ -31,9 +31,6 @@ services:
     container_name: backend
     build: ./backend
     image: 1m0gen/project-backend
-    ports:
-      - target: 5006
-        published: 5006
     environment:
       - DATABASE_URI=${DATABASE_URI}
       - SECRET_KEY=${SECRET_KEY}
